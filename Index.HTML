@@ -1,163 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>COLONY</title>
-<style>
-  :root {
-    --bg: #000000;
-    --accent: #FF0000;
-  }
-
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  html, body {
-    width: 100%;
-    height: 100%;
-    background: var(--bg);
-    overflow: hidden;
-    font-family: 'Courier New', Courier, monospace;
-  }
-
-  #stage {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--bg);
-    transition: filter 60ms linear;
-  }
-
-  #colony-canvas {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-
-  #title {
-    position: fixed;
-    top: 28px;
-    left: 28px;
-    color: var(--accent);
-    font-size: 20px;
-    font-weight: bold;
-    letter-spacing: 6px;
-    text-transform: uppercase;
-    pointer-events: none;
-    user-select: none;
-  }
-
-  #subtitle {
-    position: fixed;
-    top: 56px;
-    left: 28px;
-    max-width: 320px;
-    color: #ffffff;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 12px;
-    text-transform: lowercase;
-    line-height: 1.5;
-    opacity: 0.55;
-    pointer-events: none;
-    user-select: none;
-  }
-
-  #control-bar {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    padding: 22px 28px 26px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0));
-    z-index: 10;
-  }
-
-  #control-label-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-  }
-
-  #control-label {
-    color: var(--accent);
-    font-weight: bold;
-    font-size: 13px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-  }
-
-  #control-readout {
-    color: var(--accent);
-    font-weight: bold;
-    font-size: 13px;
-    letter-spacing: 2px;
-  }
-
-  #brightness-slider {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 100%;
-    height: 2px;
-    background: #4a0000;
-    outline: none;
-  }
-
-  #brightness-slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 16px;
-    height: 16px;
-    border-radius: 0;
-    background: var(--accent);
-    cursor: pointer;
-    box-shadow: 0 0 8px rgba(255,0,0,0.7);
-  }
-
-  #brightness-slider::-moz-range-thumb {
-    width: 16px;
-    height: 16px;
-    border: none;
-    border-radius: 0;
-    background: var(--accent);
-    cursor: pointer;
-    box-shadow: 0 0 8px rgba(255,0,0,0.7);
-  }
-
-  #hint {
-    color: #ffffff;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 11px;
-    text-transform: lowercase;
-    opacity: 0.4;
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SWARM</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <div id="title">COLONY</div>
-  <div id="subtitle">a hive mind of ten. it takes no orders. it only reads the light.</div>
+  <header class="site-header">
+    <h1 class="site-title">SWARM</h1>
+    <p class="site-subtitle">a generative creature system — four tests</p>
+  </header>
 
-  <div id="stage">
-    <canvas id="colony-canvas"></canvas>
-  </div>
+  <main class="test-list">
 
-  <div id="control-bar">
-    <div id="control-label-row">
-      <span id="control-label">Brightness</span>
-      <span id="control-readout">60%</span>
-    </div>
-    <input type="range" id="brightness-slider" min="6" max="100" value="60" step="1">
-    <span id="hint">move the light. the colony feels it together.</span>
-  </div>
+    <section class="test" id="test-sigil-seed">
+      <div class="test-heading">
+        <span class="test-number">test 01</span>
+        <h2 class="test-title">Sigil Seed</h2>
+      </div>
+      <canvas class="test-canvas" id="canvas-sigil-seed" width="640" height="200"></canvas>
+      <p class="rule-caption" id="caption-sigil-seed">rule caption placeholder</p>
+    </section>
+
+    <section class="test" id="test-behavior-rule">
+      <div class="test-heading">
+        <span class="test-number">test 02</span>
+        <h2 class="test-title">Behavior Rule</h2>
+      </div>
+      <canvas class="test-canvas" id="canvas-behavior-rule" width="640" height="200"></canvas>
+      <p class="rule-caption" id="caption-behavior-rule">rule caption placeholder</p>
+    </section>
+
+    <section class="test" id="test-gesture-language">
+      <div class="test-heading">
+        <span class="test-number">test 03</span>
+        <h2 class="test-title">Gesture Language</h2>
+      </div>
+      <canvas class="test-canvas" id="canvas-gesture-language" width="640" height="200"></canvas>
+      <p class="rule-caption" id="caption-gesture-language">rule caption placeholder</p>
+    </section>
+
+    <section class="test" id="test-atmosphere-constraint">
+      <div class="test-heading">
+        <span class="test-number">test 04</span>
+        <h2 class="test-title">Atmosphere Constraint</h2>
+      </div>
+      <canvas class="test-canvas" id="canvas-atmosphere-constraint" width="640" height="200"></canvas>
+      <p class="rule-caption" id="caption-atmosphere-constraint">rule caption placeholder</p>
+    </section>
+
+  </main>
 
   <script src="script.js"></script>
 </body>
