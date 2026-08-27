@@ -1,58 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SWARM</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SWARM</title>
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <header class="site-header">
-    <h1 class="site-title">SWARM</h1>
-    <p class="site-subtitle">a generative creature system — four tests</p>
-  </header>
+<canvas id="swarm-canvas"></canvas>
 
-  <main class="test-list">
+<div id="info-panel">
+  <div id="info-name">SWARM</div>
+  <ul id="info-rules">
+    <li>ten creatures move as one</li>
+    <li>speed is set by outdoor temperature</li>
+    <li>36°F or below holds the swarm still</li>
+    <li>100°F or above is full speed</li>
+  </ul>
+  <div id="info-controls">controls: none — grant location access to begin</div>
+  <div id="info-temp">TEMP: —</div>
+</div>
 
-    <section class="test" id="test-sigil-seed">
-      <div class="test-heading">
-        <span class="test-number">test 01</span>
-        <h2 class="test-title">Sigil Seed</h2>
-      </div>
-      <canvas class="test-canvas" id="canvas-sigil-seed" width="640" height="200"></canvas>
-      <p class="rule-caption" id="caption-sigil-seed">rule caption placeholder</p>
-    </section>
+<div id="panel">REQUESTING LOCATION...</div>
 
-    <section class="test" id="test-behavior-rule">
-      <div class="test-heading">
-        <span class="test-number">test 02</span>
-        <h2 class="test-title">Behavior Rule</h2>
-      </div>
-      <canvas class="test-canvas" id="canvas-behavior-rule" width="640" height="200"></canvas>
-      <p class="rule-caption" id="caption-behavior-rule">rule caption placeholder</p>
-    </section>
-
-    <section class="test" id="test-gesture-language">
-      <div class="test-heading">
-        <span class="test-number">test 03</span>
-        <h2 class="test-title">Gesture Language</h2>
-      </div>
-      <canvas class="test-canvas" id="canvas-gesture-language" width="640" height="200"></canvas>
-      <p class="rule-caption" id="caption-gesture-language">rule caption placeholder</p>
-    </section>
-
-    <section class="test" id="test-atmosphere-constraint">
-      <div class="test-heading">
-        <span class="test-number">test 04</span>
-        <h2 class="test-title">Atmosphere Constraint</h2>
-      </div>
-      <canvas class="test-canvas" id="canvas-atmosphere-constraint" width="640" height="200"></canvas>
-      <p class="rule-caption" id="caption-atmosphere-constraint">rule caption placeholder</p>
-    </section>
-
-  </main>
-
-  <script src="script.js"></script>
+<script src="main.js"></script>
 </body>
 </html>

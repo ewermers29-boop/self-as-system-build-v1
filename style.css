@@ -1,122 +1,87 @@
-/* ==========================================================================
-   SWARM — base stylesheet
-   Visual system: black background, red creatures (drawn in JS later),
-   uppercase/bold display text, lowercase sans-serif body text.
-   ========================================================================== */
-
-:root {
-  --color-bg: #000000;
-  --color-creature: #FF0000;
-  --color-text: #FFFFFF;
-  --color-text-dim: #999999;
-  --color-line: #333333;
-
-  --font-display: "Helvetica Neue", Arial, sans-serif;
-  --font-body: "Helvetica Neue", Arial, sans-serif;
-
-  --gap: 2.5rem;
-}
-
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
 html, body {
-  margin: 0;
-  padding: 0;
-  background: var(--color-bg);
-  color: var(--color-text);
-}
-
-body {
-  font-family: var(--font-body);
-  font-weight: 400;
-  text-transform: lowercase;
-  line-height: 1.5;
-  padding: var(--gap) 1.5rem 6rem;
-}
-
-/* ---- header ---- */
-
-.site-header {
-  max-width: 720px;
-  margin: 0 auto 4rem;
-  text-align: left;
-}
-
-.site-title {
-  font-family: var(--font-display);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: clamp(2rem, 6vw, 3.5rem);
-  margin: 0 0 0.5rem;
-}
-
-.site-subtitle {
-  font-family: var(--font-body);
-  text-transform: lowercase;
-  color: var(--color-text-dim);
-  margin: 0;
-  font-size: 0.95rem;
-}
-
-/* ---- test list layout ---- */
-
-.test-list {
-  max-width: 720px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 5rem;
-}
-
-.test {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.test-heading {
-  display: flex;
-  align-items: baseline;
-  gap: 0.75rem;
-}
-
-.test-number {
-  font-family: var(--font-body);
-  text-transform: lowercase;
-  color: var(--color-text-dim);
-  font-size: 0.85rem;
-  letter-spacing: 0.05em;
-}
-
-.test-title {
-  font-family: var(--font-display);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  font-size: 1.5rem;
-  margin: 0;
-}
-
-/* ---- canvas ---- */
-
-.test-canvas {
-  display: block;
   width: 100%;
-  max-width: 640px;
-  height: auto;
-  background: var(--color-bg);
-  border: 1px solid var(--color-line);
+  height: 100%;
+  background: #000;
+  overflow: hidden;
 }
 
-/* ---- rule caption ---- */
+#swarm-canvas {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
 
-.rule-caption {
-  font-family: var(--font-body);
+#panel {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  border: 1px solid #d33;
+  color: #d33;
+  background: rgba(0, 0, 0, 0.6);
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  letter-spacing: 0.5px;
+  padding: 16px 20px;
+  white-space: pre;
+  pointer-events: none;
+}
+
+#panel .flicker {
+  animation: flicker 1.2s infinite steps(2, start);
+}
+
+@keyframes flicker {
+  50% { opacity: 0.4; }
+}
+
+#info-panel {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  border: 1px solid #d33;
+  color: #d33;
+  background: rgba(0, 0, 0, 0.6);
+  font-family: 'Courier New', monospace;
+  padding: 16px 20px;
+  pointer-events: none;
+  max-width: 280px;
+}
+
+#info-name {
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+#info-rules {
+  list-style: none;
+  font-size: 12px;
+  line-height: 1.6;
   text-transform: lowercase;
-  color: var(--color-text-dim);
-  font-size: 0.9rem;
-  margin: 0;
+  margin-bottom: 10px;
+}
+
+#info-rules li::before {
+  content: "- ";
+}
+
+#info-controls {
+  font-size: 12px;
+  text-transform: lowercase;
+  opacity: 0.8;
+}
+
+#info-temp {
+  font-size: 12px;
+  margin-top: 10px;
+  font-weight: bold;
 }
