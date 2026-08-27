@@ -85,3 +85,31 @@ html, body {
   margin-top: 10px;
   font-weight: bold;
 }
+
+#reflection-panel {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 1px solid #d33;
+  color: #d33;
+  background: rgba(0, 0, 0, 0.6);
+  font-family: 'Courier New', monospace;
+  padding: 14px 24px;
+  pointer-events: none;
+  max-width: 640px;
+  text-align: center;
+}
+
+#reflection-title {
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+#reflection-text {
+  font-size: 12px;
+  line-height: 1.6;
+}

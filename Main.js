@@ -26,13 +26,13 @@ function setSwarmSpeed(pxPerSec) {
   swarmSpeed = pxPerSec;
 }
 
-// Fixed two-point rule: 36°F -> 0 px/sec, 100°F -> 10 px/sec.
+// Fixed two-point rule: 36°F -> 0 px/sec, 100°F -> HIGH_SPEED px/sec.
 // Linear between those points. Clamped outside the range.
 function tempToSpeed(tempF) {
   const LOW_TEMP = 36;
   const HIGH_TEMP = 100;
   const LOW_SPEED = 0;
-  const HIGH_SPEED = 100;
+  const HIGH_SPEED = 200;
 
   if (tempF <= LOW_TEMP) return LOW_SPEED;
   if (tempF >= HIGH_TEMP) return HIGH_SPEED;
@@ -176,7 +176,7 @@ const CREATURE_COUNT = 10;
 const swarm = {
   x: 0,
   y: 0,
-  angle: 0
+  angle: Math.PI / 4 // diagonal start, not straight across
 };
 
 // Fixed offsets from the swarm's centroid — exactly 10 predetermined
@@ -201,6 +201,12 @@ function initSwarmPosition() {
 }
 initSwarmPosition();
 
+// Half-extent of the fixed formation in each axis, used so the
+// swarm bounces when its outermost creatures reach the edge,
+// not just its centroid.
+const maxOffsetX = Math.max(...offsets.map(o => Math.abs(o.dx)));
+const maxOffsetY = Math.max(...offsets.map(o => Math.abs(o.dy)));
+
 function stepSwarm(dt) {
   const dx = Math.cos(swarm.angle) * swarmSpeed * dt;
   const dy = Math.sin(swarm.angle) * swarmSpeed * dt;
@@ -208,10 +214,19 @@ function stepSwarm(dt) {
   swarm.x += dx;
   swarm.y += dy;
 
-  if (swarm.x < 0) swarm.x = canvas.width;
-  if (swarm.x > canvas.width) swarm.x = 0;
-  if (swarm.y < 0) swarm.y = canvas.height;
-  if (swarm.y > canvas.height) swarm.y = 0;
+  // Bounce off the left/right edges — reflect the horizontal
+  // component of the shared direction.
+  if (swarm.x - maxOffsetX < 0 || swarm.x + maxOffsetX > canvas.width) {
+    swarm.angle = Math.PI - swarm.angle;
+    swarm.x = Math.max(maxOffsetX, Math.min(canvas.width - maxOffsetX, swarm.x));
+  }
+
+  // Bounce off the top/bottom edges — reflect the vertical
+  // component of the shared direction.
+  if (swarm.y - maxOffsetY < 0 || swarm.y + maxOffsetY > canvas.height) {
+    swarm.angle = -swarm.angle;
+    swarm.y = Math.max(maxOffsetY, Math.min(canvas.height - maxOffsetY, swarm.y));
+  }
 }
 
 function drawSwarm(ctx) {
