@@ -1,9 +1,13 @@
-# V1 CHANGELOG
+# Changelog
 
-## V1 START
+## V1 Start
+Combined the strongest parts of the Visual Rule Tests into one swarm system.
 
-Started V1 by duplicating the completed Visual Rule Tests project.
+## Temperature Control
+Changed the input from brightness to outdoor temperature because temperature creates a stronger connection between the environment and the swarm's movement.
 
-The strongest parts of the tests will be combined into one SWARM system using the ant-like sigil, collective movement, local temperature input, and the constraint of exactly 10 creatures.
+## Swarm Formation
+Tightened the spacing between the creatures so the 10 creatures read more clearly as one connected swarm.
 
-The brightness slider and brightness-based movement will be removed because the system now responds to local temperature instead.
+## Shared Movement
+Kept one shared position and velocity so all 10 creatures move together instead of independently.
